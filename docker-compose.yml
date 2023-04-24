@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  db:
+    image: arm64v8/mysql:latest
+    volumes:
+      - './mysql:/var/lib/mysql'
+    ports:
+      - '4306:3306'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somepassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    depends_on:
+      - db
+    build: .
+    # image: arm64v8/wordpress:latest
+    restart: always
+    ports:
+      - '8000:80'
+    volumes:
+      - './src/themes:/var/www/html/wp-content/themes'
+      - './src/plugins:/var/www/html/wp-content/plugins'
+      - './src/uploads:/var/www/html/wp-content/uploads'
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+
+
