@@ -1,0 +1,3 @@
+docker exec CONTAINER_ID /usr/bin/mysqldump -u root -p wp_pass wordpress > backup.sql
+
+docker exec CONTAINER_ID /usr/bin/mysqldump -u wp_usr --password=wp_pass wp_site > backup.sql
