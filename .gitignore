@@ -1,10 +1,18 @@
+# Project
+mysql/*
+src/plugins/*
+src/themes/*
+src/uploads/*
+
+
 # General
 .DS_Store
 .AppleDouble
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
